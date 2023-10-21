@@ -12,7 +12,14 @@ const drawerWidth=250;
 
 const styleDrawer={
   drawer:{
-    width:drawerWidth
+    width:drawerWidth,
+    "& .MuiBackdrop-root":{
+      display:"none"
+    }
+  },
+  drawerPaper:{
+    width:drawerWidth,
+    backgroundColor:"rgb(120,120,120,0.2)"
   }
 }
 
@@ -20,14 +27,17 @@ function NavDrawer(){
   return (
 <BrowserRouter>
 <div>
-<AppBar position="fixed">
+<AppBar position="fixed" sx={{zIndex:9999}}>
 <Toolbar>
   <Typography>
     Advance Material UI Styling
   </Typography>
 </Toolbar>
 </AppBar>
-<Drawer variant="temporary" open={true} sx={styleDrawer.drawer}>
+<Drawer variant="temporary" open={true} sx={styleDrawer.drawer}
+PaperProps={{
+  sx: simpleStyles.drawerPaper,
+}}>
   <List>
 {list.map((item,index)=>(
   <ListItem key={index}><Link to={item.route}>{item.text}</Link></ListItem>
